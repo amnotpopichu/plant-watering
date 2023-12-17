@@ -47,12 +47,14 @@ with open('logs.csv', 'w') as f:
                 writer = csv.writer(f)
                 writer.writerow([mtd,value,pump_status])
 while True:
+        value = soil_sensor.value
         if  value >= 14500:
                 pump_status = 1
                 pump.write("D,57")
                 print(value)
         else:
                 pump_status=0
+        
         currentdate=datetime.now()
         td=currentdate-startdate
         mtd=round(td.total_seconds()/60)
